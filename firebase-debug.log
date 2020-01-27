@@ -1,0 +1,54 @@
+[debug] [2020-01-27T21:23:02.501Z] ----------------------------------------------------------------------
+[debug] [2020-01-27T21:23:02.503Z] Command:       /Users/xs15785/.nvm/versions/node/v12.14.0/bin/node /Users/xs15785/.nvm/versions/node/v12.14.0/bin/firebase serve
+[debug] [2020-01-27T21:23:02.503Z] CLI Version:   7.12.1
+[debug] [2020-01-27T21:23:02.503Z] Platform:      darwin
+[debug] [2020-01-27T21:23:02.503Z] Node Version:  v12.14.0
+[debug] [2020-01-27T21:23:02.503Z] Time:          Mon Jan 27 2020 15:23:02 GMT-0600 (Central Standard Time)
+[debug] [2020-01-27T21:23:02.503Z] ----------------------------------------------------------------------
+[debug] [2020-01-27T21:23:02.503Z] 
+[debug] [2020-01-27T21:23:02.509Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-27T21:23:02.510Z] > authorizing via signed-in user
+[debug] [2020-01-27T21:23:02.510Z] [iam] checking project michalletodo for permissions ["firebase.projects.get"]
+[debug] [2020-01-27T21:23:02.511Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/michalletodo:testIamPermissions  
+
+[debug] [2020-01-27T21:23:02.692Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-27T21:23:02.693Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/michalletodo  
+ 
+[debug] [2020-01-27T21:23:02.881Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/xs15785/webdev/michalle-todo'...
+[info] 
+[debug] [2020-01-27T21:23:02.883Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/michalletodo/webApps/-/config  
+ 
+[warn] ⚠  Your requested "node" version "8" doesn't match your global version "12"
+[info] ✔  functions: Emulator started at http://localhost:5001
+[debug] [2020-01-27T21:23:03.155Z] <<< HTTP RESPONSE 200
+[info] i  functions: Watching "/Users/xs15785/webdev/michalle-todo/functions" for Cloud Functions...
+[debug] [2020-01-27T21:23:03.188Z] [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-01-27T21:23:03.188Z] [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-01-27T21:23:03.188Z] [worker-pool] submitWork(triggerId=)
+[debug] [2020-01-27T21:23:03.188Z] [worker-~diagnostic~-7ad0da4c-5517-4e31-81c7-7f312c45bca0]: Assigning socketPath: /var/folders/qg/lk04v1s17hsc93t6q38qn_rw0000gp/T/fire_emu_2902.sock
+[debug] [2020-01-27T21:23:03.189Z] [worker-~diagnostic~-7ad0da4c-5517-4e31-81c7-7f312c45bca0]: BUSY
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+[debug] [2020-01-27T21:23:03.393Z] [runtime-status] [2902] Functions runtime initialized. {"cwd":"/Users/xs15785/webdev/michalle-todo/functions","node_version":"12.14.0"}
+[debug] [2020-01-27T21:23:03.393Z] [runtime-status] [2902] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2020-01-27T21:23:03.395Z] [runtime-status] [2902] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.9.2","resolution":"/Users/xs15785/webdev/michalle-todo/functions/node_modules/firebase-admin/lib/index.js"}
+[debug] [2020-01-27T21:23:03.395Z] [runtime-status] [2902] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/xs15785/webdev/michalle-todo/functions/node_modules/firebase-functions/lib/index.js"}
+[debug] [2020-01-27T21:23:03.396Z] [runtime-status] [2902] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"/Users/xs15785/webdev/michalle-todo/functions/node_modules/firebase-functions/lib/index.js"}
+[warn] ⚠  Error: Cannot find module '/Users/xs15785/webdev/michalle-todo/functions/lib/index.js'. Please verify that the package.json has a valid "main" entry
+    at tryPackage (internal/modules/cjs/loader.js:297:19)
+    at Function.Module._findPath (internal/modules/cjs/loader.js:528:18)
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:784:27)
+    at Function.Module._load (internal/modules/cjs/loader.js:690:27)
+    at Module.require (internal/modules/cjs/loader.js:852:19)
+    at require (internal/modules/cjs/helpers.js:74:18)
+    at /Users/xs15785/.nvm/versions/node/v12.14.0/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:718:33
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/xs15785/.nvm/versions/node/v12.14.0/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorRuntime.js:4:58)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[warn] ⚠  We were unable to load your functions code. (see above)
+   - It appears your code is written in Typescript, which must be compiled before emulation.
+   - You may be able to run "npm run build" in your functions directory to resolve this.
+[debug] [2020-01-27T21:23:03.438Z] [worker-~diagnostic~-7ad0da4c-5517-4e31-81c7-7f312c45bca0]: exited
+[debug] [2020-01-27T21:23:03.438Z] [worker-~diagnostic~-7ad0da4c-5517-4e31-81c7-7f312c45bca0]: FINISHED
