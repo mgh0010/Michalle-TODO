@@ -8,6 +8,44 @@
   </div>
 </template>
 
+<script>
+import { mapMutations } from 'vuex'
+import firebase from 'firebase/app'
+import 'firebase/firestore';
+
+export default {
+  mounted () {
+    this._getFamily();
+    this._getTasks();
+  },
+  methods: {
+    ...mapMutations(['setFamily', 'setTasks']),
+    async _getFamily () {
+      const snapshot = await firebase.firestore().collection('family').get();
+      const family = [];
+      snapshot.forEach(doc => {
+        family.push(doc.data());
+      })
+      if(family.length > 0) {
+        this.setFamily(family);
+      }
+    },
+    async _getTasks () {
+      const snapshot = await firebase.firestore().collection('family/michael/todoLists/todo/tasks')
+        .onSnapshot(snapshot => {
+          const tasks = [];
+          snapshot.forEach(doc => {
+            tasks.push(doc.data());
+          })
+          if(tasks.length > 0) {
+            this.setTasks(tasks);
+          }
+        });
+    },
+  },
+}
+</script>
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -28,5 +66,20 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
+
+.input-wrapper {
+  padding: .2em;
+  background-color: #42b983;
+}
+
+input {
+  line-height: 3em;
+  outline: none;
 }
 </style>
