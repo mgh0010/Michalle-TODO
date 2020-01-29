@@ -39,11 +39,11 @@ export default new Vuex.Store({
     async addTask({state, commit}, task, familyMemberName='michael', listName='todo') {
       const res = await firebase.firestore().collection(`family/${familyMemberName}/todoLists/${listName}/tasks`)
         .add({ title: task });
+      await firebase.firestore().doc(res.path).update({ id: res.id });
       return res;
     },
     async deleteTask({state, commit}, task, familyMemberName='michael', listName='todo') {
-      const taskToDelete = state.tasks.find((_task: any) => _task.title === task.title)
-      const res = await firebase.firestore().doc(`family/${familyMemberName}/todoLists/${listName}/tasks`)
+      const res = await firebase.firestore().doc(`family/${familyMemberName}/todoLists/${listName}/tasks/${task.id}`)
         .delete();
       return res;
     },

@@ -26,20 +26,16 @@ export default {
       snapshot.forEach(doc => {
         family.push(doc.data());
       })
-      if(family.length > 0) {
-        this.setFamily(family);
-      }
+      this.setFamily(family);
     },
     async _getTasks () {
-      const snapshot = await firebase.firestore().collection('family/michael/todoLists/todo/tasks')
+      await firebase.firestore().collection('family/michael/todoLists/todo/tasks')
         .onSnapshot(snapshot => {
           const tasks = [];
           snapshot.forEach(doc => {
             tasks.push(doc.data());
           })
-          if(tasks.length > 0) {
-            this.setTasks(tasks);
-          }
+          this.setTasks(tasks);
         });
     },
   },
