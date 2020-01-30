@@ -9,17 +9,18 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 import firebase from 'firebase/app'
 import 'firebase/firestore';
 
 export default {
-  mounted () {
+  async mounted () {
     this._getFamily();
-    this._getTasks();
+    this.watchTodos();
   },
   methods: {
-    ...mapMutations(['setFamily', 'setTasks']),
+    ...mapMutations(['setFamily']),
+    ...mapActions(['watchTodos']),
     async _getFamily () {
       const snapshot = await firebase.firestore().collection('family').get();
       const family = [];
@@ -27,16 +28,6 @@ export default {
         family.push(doc.data());
       })
       this.setFamily(family);
-    },
-    async _getTasks () {
-      await firebase.firestore().collection('family/michael/todoLists/todo/tasks')
-        .onSnapshot(snapshot => {
-          const tasks = [];
-          snapshot.forEach(doc => {
-            tasks.push(doc.data());
-          })
-          this.setTasks(tasks);
-        });
     },
   },
 }

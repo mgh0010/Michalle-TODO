@@ -6,20 +6,22 @@
           ? this.$store.state.family[0].name 
           : '' }}
       </p>
+
       <ul>
-        <li v-for="task in tasks" :key="task.id">
-          <p> {{ task.title }} </p>
-          <span class="delete" @click="deleteTask(task, 'michael', 'todo')">X</span>
+        <li v-for="todo in alexandrasTodos" :key="todo.id">
+          <p> {{ todo.title }} </p>
+          <span class="delete" @click="deleteTodo(todo.id)">X</span>
           
         </li>
       </ul>
       <div class="flex-row">
         <div class="input-wrapper">
-          <input type="text" v-model="newTask" ref="taskInput">
+          <input type="text" v-model="newTodo" ref="todoInput1">
         </div>
       </div>
-      <button @click="addNewTask(newTask, 'michael', 'todo')">Add Task</button>
+      <button @click="addNewTodo('alexandra')">Add Todo</button>
     </div>
+
     <div>
       <p>
         {{ this.$store.state.family.length > 0 
@@ -27,18 +29,18 @@
           : '' }}
       </p>
       <ul>
-        <li v-for="task in tasks" :key="task.id">
-          <p> {{ task.title }} </p>
-          <span class="delete" @click="deleteTask(task, 'Alexandra', 'todo')">X</span>
+        <li v-for="todo in michaelsTodos" :key="todo.id">
+          <p> {{ todo.title }} </p>
+          <span class="delete" @click="deleteTodo(todo.id)">X</span>
           
         </li>
       </ul>
       <div class="flex-row">
         <div class="input-wrapper">
-          <input type="text" v-model="newTask" ref="taskInput">
+          <input type="text" v-model="newTodo" ref="todoInput2">
         </div>
       </div>
-      <button @click="addNewTask(newTask, 'Alexandra', 'todo')">Add Task</button>
+      <button @click="addNewTodo('michael')">Add Todo</button>
     </div>
   </div>
 </template>
@@ -49,18 +51,25 @@ import { mapState, mapActions } from 'vuex';
 export default  {
   data() {
     return {
-      newTask: ''
+      newTodo: '',
+      michaelsTodos: [],
+      alexandrasTodos: [],
     }
   },
+  async mounted () {
+    await this.getTodos();
+    this.michaelsTodos = this.todos.filter(todo => todo.workerID === 2);
+    this.alexandrasTodos = this.todos.filter(todo => todo.workerID === 1);
+  },
   computed: {
-    ...mapState(['family', 'tasks'])
+    ...mapState(['family', 'todos'])
   },
   methods: {
-    ...mapActions(['addTask', 'deleteTask']),
-    async addNewTask(familyMember, todoListName) {
-      const res = await this.addTask(this.newTask, familyMember, todoListName)
-      this.newTask = '';
-      this.$refs.taskInput.focus();
+    ...mapActions(['getTodos', 'addTodo', 'deleteTodo']),
+    async addNewTodo(familyMemberName) {
+      const res = await this.addTodo({ title: this.newTodo, familyMemberName });
+      this.newTodo = '';
+      this.$refs.todoInput1.focus();
     }
   }
 }
