@@ -52,20 +52,15 @@ export default  {
   data() {
     return {
       newTodo: '',
-      michaelsTodos: [],
-      alexandrasTodos: [],
     }
   },
   async mounted () {
-    await this.getTodos();
-    this.michaelsTodos = this.todos.filter(todo => todo.workerID === 2);
-    this.alexandrasTodos = this.todos.filter(todo => todo.workerID === 1);
   },
   computed: {
-    ...mapState(['family', 'todos'])
+    ...mapState(['family', 'michaelsTodos', 'alexandrasTodos'])
   },
   methods: {
-    ...mapActions(['getTodos', 'addTodo', 'deleteTodo']),
+    ...mapActions(['addTodo', 'deleteTodo']),
     async addNewTodo(familyMemberName) {
       const res = await this.addTodo({ title: this.newTodo, familyMemberName });
       this.newTodo = '';

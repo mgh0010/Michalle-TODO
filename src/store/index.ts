@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import todo from '@/types/todo'
+
 Vue.use(Vuex)
 import firebase from 'firebase/app'
 import 'firebase/firestore'
@@ -22,30 +24,30 @@ firebase.initializeApp(firebaseConfig);
 export default new Vuex.Store({
   state: {
     family: [],
-    todos: [],
+    michaelsTodos: [],
+    alexandrasTodos: [],
   },
   mutations: {
-    setFamily(state, family) {
-      state.family = family;
-    },
-    setTodos(state, todos) {
-      state.todos = todos;
+    setFamily(state, family) { state.family = family; },
+    setTodos(state, payload) {
+      if(payload.workerID === 1) {
+        state.alexandrasTodos = payload.todos;
+      }
+      else {
+        state.michaelsTodos = payload.todos;
+      }
     },
   },
   actions: {
-    async getTodos ({state, commit}) {
-      const res = await firebase.firestore().collection(`todos`).get()
-      const todos = res.docs.map(doc => doc.data())
-      commit('setTodos', todos);
-    },
-    async watchTodos ({state, commit}) {
+    async watchTodos ({state, commit}, who) {
       await firebase.firestore().collection(`todos`)
+        .where('workerID', '==', who)
         .onSnapshot(snapshot => {
-          const todos = [];
+          const todos: Array<todo> = [];
           snapshot.forEach(doc => {
             todos.push(doc.data());
           })
-          commit('setTodos', todos);
+          commit('setTodos', {workerID: who, todos});
         });
     },
     async addTodo({state, commit}, payload) {

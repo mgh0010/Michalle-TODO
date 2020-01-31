@@ -16,7 +16,8 @@ import 'firebase/firestore';
 export default {
   async mounted () {
     this._getFamily();
-    this.watchTodos();
+    this.watchTodos(1);
+    this.watchTodos(2);
   },
   methods: {
     ...mapMutations(['setFamily']),
