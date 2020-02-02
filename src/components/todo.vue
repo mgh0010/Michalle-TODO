@@ -1,7 +1,7 @@
 <template>
   <div class="todo">
     <p> {{ todo.title }} </p>
-    <span class="delete" @click="deleteTodo(todo.id)">X</span>
+    <span class="delete warning" @click="deleteTodo(todo.id)">X</span>
   </div>
 </template>
 
@@ -23,8 +23,14 @@ export default {
 </script>
 
 <style scoped>
+.todo{ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .delete {
   cursor: pointer;
-  color: red;
+  padding-top: .2rem;
+  padding-left: .5em;
 }
 </style>

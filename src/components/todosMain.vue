@@ -15,11 +15,6 @@ import todo from '@/components/todo'
 import todoList from '@/components/todoList'
 
 export default  {
-  data() {
-    return {
-      newTodo: '',
-    }
-  },
   components: {
     todo, todoList
   },
@@ -34,9 +29,8 @@ export default  {
 
 .todos-main {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 h3 {
@@ -46,9 +40,4 @@ h3 {
 a {
   color: #42b983;
 }
-
-.input-wrapper {
-  width: 100%;
-}
-input { width: 90% }
 </style>
