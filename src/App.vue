@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
@@ -35,12 +31,15 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #1B1C1E !important;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #FFFFFF;
 }
 
 #nav {
@@ -61,13 +60,5 @@ export default {
   justify-content: center;
 }
 
-.input-wrapper {
-  padding: .2em;
-  background-color: #42b983;
-}
 
-input {
-  line-height: 3em;
-  outline: none;
-}
 </style>

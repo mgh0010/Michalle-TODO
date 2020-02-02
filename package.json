@@ -1,5 +1,6 @@
 {
   "name": "michalle-todo",
+  "displayName": "Michalle TODO",
   "version": "0.1.0",
   "private": true,
   "scripts": {

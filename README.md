@@ -1,4 +1,4 @@
-# michalle-todo
+# Michalle TODO
 
 ## Project setup
 ```

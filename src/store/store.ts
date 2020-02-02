@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import todo from '@/types/todo'
+import { todo } from '@/types/Todo'
 
 Vue.use(Vuex)
 import firebase from 'firebase/app'
@@ -45,7 +45,7 @@ export default new Vuex.Store({
         .onSnapshot(snapshot => {
           const todos: Array<todo> = [];
           snapshot.forEach(doc => {
-            todos.push(doc.data());
+            todos.push(doc.data() as todo);
           })
           commit('setTodos', {workerID: who, todos});
         });
