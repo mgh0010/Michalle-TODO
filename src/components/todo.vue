@@ -1,7 +1,11 @@
 <template>
   <div class="todo">
     <p> {{ todo.title }} </p>
-    <span class="delete warning" @click="deleteTodo(todo.id)">X</span>
+    <font-awesome-icon 
+      class="delete primary-orange" 
+      :icon="['far', 'check-square']"
+      @click="deleteTodo(todo.id)">
+    </font-awesome-icon>
   </div>
 </template>
 

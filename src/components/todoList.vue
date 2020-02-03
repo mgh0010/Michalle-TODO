@@ -1,18 +1,14 @@
 <template>
   <div class="todo-list">
-    <h2 class="accent">{{ name }}</h2>
+    <h2 class="accent mb0">{{ name }}</h2>
     <ul class="todos">
       <li v-for="todo in todos" :key="todo.id">
-        <hr/>
+        <hr class="grey-bg"/>
         <todo :todo='todo'></todo>
       </li>
     </ul>
-    <div class="flex-row">
-      <div class="input-wrapper">
-        <input type="text" v-model="newTodo" :ref="name">
-      </div>
-    </div>
-    <button class="floating-btn" @click="addNewTodo(listName)">Add Todo</button>
+    <input type="text" class="grey-bg" v-model="newTodo" :ref="name">
+    <button class="floating-btn primary-green-bg" @click="addNewTodo(listName)">Add Todo</button>
   </div>
 </template>
 
@@ -63,7 +59,6 @@ export default {
 hr {
   border: none;
   height: 1px;
-  background-color: white;
 }
 ul {
   list-style-type: none;
@@ -77,6 +72,7 @@ input {
   line-height: 3em;
   outline: none;
   margin-bottom: 1em;
+  padding: 0 10px;
 }
 .todos {
   display: flex;
