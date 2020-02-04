@@ -59,7 +59,6 @@ export default {
     },
     setInputFocused(inputFocused) {
       setTimeout(() => this.inputFocused = inputFocused, 200)
-      
     }
   },
 

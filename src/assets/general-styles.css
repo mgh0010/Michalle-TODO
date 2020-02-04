@@ -41,8 +41,10 @@ body {
 }
 
 .floating-btn-bottom {
-  position: absolute;
-  bottom: 1em;
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  padding: 1rem 1.5rem;
 }
 
 input {
