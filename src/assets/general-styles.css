@@ -42,8 +42,8 @@ body {
 
 .floating-btn-bottom {
   position: fixed;
-  bottom: 10%;
-  right: 10%;
+  bottom: 1%;
+  right: 1%;
   padding: 1rem 1.5rem;
 }
 

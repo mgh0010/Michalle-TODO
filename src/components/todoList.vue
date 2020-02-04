@@ -95,4 +95,38 @@ input {
   flex-flow: column wrap;
   width: 90%;
 }
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(2em);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1);
+    opacity: .25;
+  }
+  75% {
+    transform: scale(.5);
+    opacity: .75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+button {
+  animation-duration: .4s;
+  animation-name: slideIn;
+  animation-timing-function: ease-in-out;
+}
 </style>

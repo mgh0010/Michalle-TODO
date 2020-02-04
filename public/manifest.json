@@ -1,6 +1,6 @@
 {
   "name": "Michalle TODO",
-  "short_name": "Michalle TODO",
+  "short_name": "TODO",
   "theme_color": "#BA86FC",
   "icons": [
     {
@@ -16,5 +16,5 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#000000"
+  "background_color": "#BA86FC"
 }
