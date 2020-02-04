@@ -58,7 +58,7 @@ export default {
       this.$refs[this.name].focus();
     },
     setInputFocused(inputFocused) {
-      setTimeout(() => this.inputFocused = inputFocused, 200)
+      setTimeout(() => this.inputFocused = inputFocused, 150)
     }
   },
 
@@ -125,8 +125,6 @@ input {
   }
 }
 button {
-  animation-duration: .4s;
-  animation-name: slideIn;
-  animation-timing-function: ease-in-out;
+  animation: slideIn .4s ease-in-out;
 }
 </style>
