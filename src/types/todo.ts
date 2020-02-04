@@ -1,4 +1,4 @@
-export interface todo {
+export interface Todo {
   id: String,
   title: String,
   workerID: Number,

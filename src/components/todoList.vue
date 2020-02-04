@@ -26,7 +26,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { Todo } from '@/types/Todo';
+import { Todo } from '@/types/todo';
 import todo from '@/components/todo'
 
 export default {
