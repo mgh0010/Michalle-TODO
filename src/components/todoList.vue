@@ -7,8 +7,20 @@
         <todo :todo='todo'></todo>
       </li>
     </ul>
-    <input type="text" class="grey-bg" v-model="newTodo" :ref="name">
-    <button class="floating-btn primary-green-bg" @click="addNewTodo(listName)">Add Todo</button>
+    <input 
+      type="text" 
+      class="grey-bg" 
+      v-model="newTodo" 
+      :ref="name"
+      @focus="inputFocused = true"
+      @blur="setInputFocused(false)">
+    <button 
+      :id='`${name}-add-todo-btn`'
+      class="floating-btn-bottom primary-green-bg" 
+      @click="addNewTodo(listName)"
+      v-show='inputFocused'>
+      Add Todo
+    </button>
   </div>
 </template>
 
@@ -21,6 +33,7 @@ export default {
   data() {
     return {
       newTodo: '',
+      inputFocused: false,
     }
   },
   props: {
@@ -43,6 +56,10 @@ export default {
       const res = await this.addTodo({ title: this.newTodo, familyMemberName });
       this.newTodo = '';
       this.$refs[this.name].focus();
+    },
+    setInputFocused(inputFocused) {
+      setTimeout(() => this.inputFocused = inputFocused, 200)
+      
     }
   },
 

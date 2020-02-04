@@ -22,7 +22,7 @@ body {
   color: #42b983;
 }
 
-.floating-btn {
+.floating-btn, .floating-btn-bottom {
   padding: .5rem .75rem;
   font-size: .8rem;
   border-radius: 10px;
@@ -38,6 +38,11 @@ body {
   border: none;
   outline: none !important;
   cursor: pointer;
+}
+
+.floating-btn-bottom {
+  position: absolute;
+  bottom: 1em;
 }
 
 input {
