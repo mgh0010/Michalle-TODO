@@ -51,11 +51,14 @@ export default new Vuex.Store({
         });
     },
     async addTodo({state, commit}, payload) {
+      if(!payload.title) {
+        throw new Error('Todo title cannot be empty')
+      }
       const res = await firebase.firestore().collection('todos')
         .add({ 
           title: payload.title,
           workerID: payload.familyMemberName === 'alexandra' ? 1 : 2,
-          categories: [ 'home' ],
+          categories: [ 'todoLists' ],
         });
       await firebase.firestore().doc(res.path).update({ id: res.id });
       return res;

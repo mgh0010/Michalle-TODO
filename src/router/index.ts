@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from '../views/home.vue'
+import todoLists from '../views/todoLists.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: home
+    name: 'todoLists',
+    component: todoLists
   },
   // {
   //   path: '/about',
