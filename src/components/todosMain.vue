@@ -1,5 +1,6 @@
 <template>
   <div class="todos-main">
+    <mah-back url='toGets'></mah-back>
     <todo-list :name="this.$store.state.family.length > 0 ? this.$store.state.family[0].name : ''"
                listName='alexandra'
                :todos='alexandrasTodos'></todo-list>
@@ -13,6 +14,8 @@
 import { mapState, mapActions } from 'vuex';
 import todo from '@/components/todo'
 import todoList from '@/components/todoList'
+
+import '@/components/back'
 
 export default  {
   components: {
