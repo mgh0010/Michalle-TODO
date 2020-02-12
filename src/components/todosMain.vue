@@ -1,6 +1,6 @@
 <template>
   <div class="todos-main">
-    <mah-back url='toGets'></mah-back>
+    <back url='to-gets'></back>
     <todo-list :name="this.$store.state.family.length > 0 ? this.$store.state.family[0].name : ''"
                listName='alexandra'
                :todos='alexandrasTodos'></todo-list>
@@ -14,12 +14,20 @@
 import { mapState, mapActions } from 'vuex';
 import todo from '@/components/todo'
 import todoList from '@/components/todoList'
+import back from '@/components/back'
 
 import '@/components/back'
 
 export default  {
+  data() {
+    return {
+      test: {
+        testFunc: () => this.$router.push(['to-gets'])
+      }
+    }
+  },
   components: {
-    todo, todoList
+    todo, todoList, back
   },
   computed: {
     ...mapState(['family', 'michaelsTodos', 'alexandrasTodos'])
@@ -33,7 +41,6 @@ export default  {
 .todos-main {
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
 }
 
 h3 {

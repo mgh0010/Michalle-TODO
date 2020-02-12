@@ -5,7 +5,6 @@ import { Todo } from '@/types/todo'
 
 Vue.use(Vuex)
 import firebase from 'firebase/app'
-import 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -50,7 +49,7 @@ export default new Vuex.Store({
           commit('setTodos', {workerID: who, todos});
         });
     },
-    async addTodo({state, commit}, payload) {
+    async addTodo({}, payload) {
       if(!payload.title) {
         throw new Error('Todo title cannot be empty')
       }
@@ -63,8 +62,24 @@ export default new Vuex.Store({
       await firebase.firestore().doc(res.path).update({ id: res.id });
       return res;
     },
-    async deleteTodo({state, commit}, todoID) {
+    async deleteTodo({}, todoID) {
       const res = await firebase.firestore().doc(`todos/${todoID}`)
+        .delete();
+      return res;
+    },
+    async addToGet({ }, payload) {
+      if(!payload.title) {
+        throw new Error('To Get title cannot be empty')
+      }
+      const res = await firebase.firestore().collection('toGets')
+        .add({ 
+          title: payload.title,
+        });
+      await firebase.firestore().doc(res.path).update({ id: res.id });
+      return res;
+    },
+    async deleteToGet({}, toGetID) {
+      const res = await firebase.firestore().doc(`toGets/${toGetID}`)
         .delete();
       return res;
     },

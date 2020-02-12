@@ -7,20 +7,21 @@
         <todo :todo='todo'></todo>
       </li>
     </ul>
-    <input 
-      type="text" 
-      class="grey-bg" 
-      v-model="newTodo" 
-      :ref="name"
-      @focus="inputFocused = true"
-      @blur="setInputFocused(false)">
-    <button 
-      :id='`${name}-add-todo-btn`'
-      class="floating-btn-bottom primary-green-bg" 
-      @click="addNewTodo(listName)"
-      v-show='inputFocused'>
-      Add Todo
-    </button>
+    <form @submit.prevent="addNewTodo(listName)">
+      <input 
+        type="text" 
+        class="grey-bg" 
+        v-model="newTodo" 
+        :ref="name"
+        @focus="inputFocused = true"
+        @blur="setInputFocused(false)">
+      <button 
+        :id='`${name}-add-todo-btn`'
+        class="floating-btn-bottom primary-green-bg" 
+        v-show='inputFocused'>
+        Add Todo
+      </button>
+    </form>
   </div>
 </template>
 
@@ -76,55 +77,10 @@ hr {
   border: none;
   height: 1px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-input {
-  line-height: 3em;
-  outline: none;
-  margin-bottom: 1em;
-  padding: 0 10px;
-}
+
 .todos {
   display: flex;
   flex-flow: column wrap;
   width: 90%;
-}
-
-@keyframes slideIn {
-  0% {
-    transform: translateX(2em);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-@keyframes bounceIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1);
-    opacity: .25;
-  }
-  75% {
-    transform: scale(.5);
-    opacity: .75;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-button {
-  animation: slideIn .4s ease-in-out;
 }
 </style>
