@@ -13,7 +13,9 @@ library.add(faCheckSquare)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import Vue2TouchEvents from 'vue2-touch-events'
-Vue.use(Vue2TouchEvents)
+Vue.use(Vue2TouchEvents, {
+  swipeTolerance: 3
+})
 
 Vue.config.productionTip = false
 

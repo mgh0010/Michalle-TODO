@@ -20,7 +20,7 @@ export default {
     }
   },
   components: {
-    toGets,
+    toGets
   },
   methods: {
     goToToDos() {

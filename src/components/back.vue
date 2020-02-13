@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <span @click="$router.push(url)">
-      To Gets
+      Swipe For To Gets
     </span>
   </div>
 </template>
@@ -20,7 +20,10 @@ export default {
 <style scoped>
 .back {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   cursor: pointer;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  opacity: .5;
 }
 </style>
