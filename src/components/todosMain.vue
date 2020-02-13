@@ -1,12 +1,15 @@
 <template>
-  <div class="todos-main">
+  <div 
+    class="todos-main" 
+    :class="{slideOutRight: leavingView}" 
+    v-touch:swipe.right='goToToGets'>
     <back url='to-gets'></back>
     <todo-list :name="this.$store.state.family.length > 0 ? this.$store.state.family[0].name : ''"
-               listName='alexandra'
-               :todos='alexandrasTodos'></todo-list>
+              listName='alexandra'
+              :todos='alexandrasTodos'></todo-list>
     <todo-list :name="this.$store.state.family.length > 0 ? this.$store.state.family[1].name : ''"
-               listName='michael'
-               :todos='michaelsTodos'></todo-list>
+              listName='michael'
+              :todos='michaelsTodos'></todo-list>
   </div>
 </template>
 
@@ -21,9 +24,7 @@ import '@/components/back'
 export default  {
   data() {
     return {
-      test: {
-        testFunc: () => this.$router.push(['to-gets'])
-      }
+      leavingView: false,
     }
   },
   components: {
@@ -32,11 +33,32 @@ export default  {
   computed: {
     ...mapState(['family', 'michaelsTodos', 'alexandrasTodos'])
   },
+  methods: {
+    goToToGets() {
+      this.leavingView = true;
+      setTimeout(() => {
+        this.$router.push("to-gets");
+      }, 80);
+    }
+  }
+
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.slideOutRight {
+  animation: slideOutRight .1s;
+}
 
 .todos-main {
   display: flex;

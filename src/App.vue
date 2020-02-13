@@ -29,3 +29,12 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+#app {
+  min-height: 95vh;
+}
+#app > * {
+  height: 98vh;
+}
+</style>

@@ -10,8 +10,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons'
 library.add(faCheckSquare)
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+import Vue2TouchEvents from 'vue2-touch-events'
+Vue.use(Vue2TouchEvents)
 
 Vue.config.productionTip = false
 
