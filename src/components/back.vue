@@ -25,5 +25,6 @@ export default {
   writing-mode: vertical-rl;
   text-orientation: sideways;
   opacity: .5;
+  transition: all .5s
 }
 </style>

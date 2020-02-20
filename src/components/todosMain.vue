@@ -29,6 +29,7 @@ export default  {
 <style scoped>
 .todos-main {
   display: flex;
+  flex-grow: 1;
   flex-flow: column nowrap;
 }
 
