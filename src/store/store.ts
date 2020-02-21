@@ -6,25 +6,13 @@ import { Todo } from '@/types/todo'
 Vue.use(Vuex)
 import firebase from 'firebase/app'
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyC4G1dXopIqqZLNnpWYnFdW9MU1rUEA7eg",
-  authDomain: "michalletodo.firebaseapp.com",
-  databaseURL: "https://michalletodo.firebaseio.com",
-  projectId: "michalletodo",
-  storageBucket: "michalletodo.appspot.com",
-  messagingSenderId: "499823278543",
-  appId: "1:499823278543:web:e4eb521715cb35d8cababa",
-  measurementId: "G-C8QM4L2L1Q"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
 export default new Vuex.Store({
   state: {
     family: [],
     michaelsTodos: [],
     alexandrasTodos: [],
+    signedIn: false,
+    user: {},
   },
   mutations: {
     setFamily(state, family) { state.family = family; },
@@ -36,6 +24,7 @@ export default new Vuex.Store({
         state.michaelsTodos = payload.todos;
       }
     },
+    setSignedIn(state, signedIn) { state.signedIn = signedIn; },
   },
   actions: {
     async watchTodos ({state, commit}, who) {

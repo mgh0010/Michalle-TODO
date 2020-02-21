@@ -4,6 +4,10 @@ import './registerServiceWorker'
 import router from './router/router'
 import store from './store/store'
 
+
+import 'firebase/firestore';
+import 'firebase/auth';
+
 import '@/assets/general-styles.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -14,7 +18,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 import Vue2TouchEvents from 'vue2-touch-events'
 Vue.use(Vue2TouchEvents, {
-  swipeTolerance: 99,
+  swipeTolerance: 3,
 })
 
 Vue.config.productionTip = false
