@@ -31,12 +31,22 @@ export default new Vuex.Store({
       await firebase.firestore().collection(`todos`)
         .where('workerID', '==', who)
         .onSnapshot(snapshot => {
-          const todos: Array<Todo> = [];
+          let todos: Array<Todo> = [];
           snapshot.forEach(doc => {
             todos.push(doc.data() as Todo);
           })
-          commit('setTodos', {workerID: who, todos});
+          const sortedTodos = todos.slice().sort((a, b) => {
+            if(!a.dueDate && b.dueDate) return 1;
+            if(a.dueDate && !b.dueDate) return -1;
+            if(!a.dueDate && !b.dueDate) return 0;
+            return Number(a.dueDate.replace(/-/g, '')) - Number(b.dueDate.replace(/-/g, ''))
+          })
+          commit('setTodos', {workerID: who, todos: sortedTodos});
         });
+    },
+    async getTodo({}, id) {
+      const doc = await firebase.firestore().doc(`todos/${id}`).get();
+      return doc.data();
     },
     async addTodo({}, payload) {
       if(!payload.title) {
@@ -49,6 +59,15 @@ export default new Vuex.Store({
           categories: [ 'todoLists' ],
         });
       await firebase.firestore().doc(res.path).update({ id: res.id });
+      return res;
+    },
+    async editTodo({}, payload) {
+      if(!payload.title) {
+        throw new Error('Todo title cannot be empty')
+      }
+
+      const res = await firebase.firestore().doc(`todos/${payload.id}`)
+        .update(payload);
       return res;
     },
     async deleteTodo({}, todoID) {

@@ -16,7 +16,7 @@
         @blur="setInputFocused(false)">
       <button 
         :id='`to-get-add-to-get-btn`'
-        class="floating-btn-bottom primary-green-bg" 
+        class="floating-bottom-right floating-btn primary-green-bg" 
         v-show='inputFocused'>
         Add To Get
       </button>

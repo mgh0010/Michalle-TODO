@@ -23,6 +23,8 @@ input {
   outline: none;
   margin-bottom: 1em;
   padding: 0 10px;
+  border: none;
+  font-size: large;
 }
 
 #nav {
@@ -38,7 +40,7 @@ input {
   color: #42b983;
 }
 
-.floating-btn, .floating-btn-bottom {
+.floating-btn {
   padding: .5rem .75rem;
   font-size: .8rem;
   border-radius: 10px;
@@ -56,17 +58,20 @@ input {
   cursor: pointer;
 }
 
-.floating-btn-bottom {
+.floating-bottom-right {
   position: fixed;
   bottom: 1%;
   right: 1%;
   padding: 1rem 1.5rem;
 }
 
-input {
-  border: none;
-  font-size: large;
+.floating-bottom-left {
+  position: fixed;
+  bottom: 1%;
+  right: 70%;
+  padding: 1rem 1.5rem;
 }
+
 
 .flex-row {
   display: flex;
@@ -82,10 +87,14 @@ input {
 .warning { color: #95505E !important; }
 .warning-bg { background-color: #95505E !important; }
 .grey { color: #34383B; }
-.grey-bg { background-color: #34383B; }
+.grey-bg { 
+  background-color: #34383B; 
+  color: white;
+}
 
 .m0 { margin: 0 !important; }
 .mb0 { margin-bottom: 0 !important; }
+.mt0 { margin-top: 0 !important; }
 
 @keyframes slideIn {
   0% {

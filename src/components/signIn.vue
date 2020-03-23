@@ -13,7 +13,7 @@
         <input type="password" name="password" v-model='password'>
       </div>
 
-      <button class="floating-btn-bottom primary-green-bg" type="submit">SIGN IN</button>
+      <button class="floating-bottom-right floating-btn primary-green-bg" type="submit">SIGN IN</button>
     </form>
     <p v-if="error" class="warning">
       {{ error }}
@@ -67,7 +67,6 @@ export default {
 }
 
 button {
-  color: white;
   float: right;
 }
 </style>

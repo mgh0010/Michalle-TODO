@@ -3,4 +3,6 @@ export interface Todo {
   title: String,
   workerID: Number,
   categories: Array<String>,
+  dueDate: String,
+  priority: String
 }

@@ -7,17 +7,17 @@
         <todo :todo='todo'></todo>
       </li>
     </ul>
-    <form @submit.prevent="addNewTodo(listName)">
+    <form @submit.prevent="addNewTodo()">
       <input 
         type="text" 
         class="grey-bg" 
         v-model="newTodo" 
         :ref="name"
-        @focus="inputFocused = true"
+        @focus="setInputFocused(true)"
         @blur="setInputFocused(false)">
       <button 
         :id='`${name}-add-todo-btn`'
-        class="floating-btn-bottom primary-green-bg" 
+        class="floating-bottom-right floating-btn primary-green-bg" 
         v-show='inputFocused'>
         Add Todo
       </button>
@@ -53,8 +53,8 @@ export default {
   },
   methods: {
     ...mapActions(['addTodo']),
-    async addNewTodo(familyMemberName) {
-      const res = await this.addTodo({ title: this.newTodo, familyMemberName });
+    addNewTodo() {
+      const res = this.addTodo({ title: this.newTodo, familyMemberName: this.listName });
       this.newTodo = '';
       this.$refs[this.name].focus();
     },

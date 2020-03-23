@@ -19,6 +19,14 @@ const routes = [
     }
   },
   {
+    path: '/todo/:id',
+    name: 'todo',
+    component: () => import(/* webpackChunkName: "todoLists" */ '../views/editTodo.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/to-gets',
     name: 'toGets',
     // route level code-splitting
