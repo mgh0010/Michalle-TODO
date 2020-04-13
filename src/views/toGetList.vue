@@ -4,6 +4,7 @@
     v-touch:swipe.left='goToToDos'
     :class="{slideOutLeft: leavingView}"
   >
+    <shopping-list></shopping-list>
     <to-gets></to-gets>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script>
 import '@/components/toGets'
 import toGets from '@/components/toGets'
+import shoppingList from '@/components/shoppingList'
 
 export default {
   name: 'toGetList',
@@ -20,7 +22,7 @@ export default {
     }
   },
   components: {
-    toGets
+    toGets, shoppingList,
   },
   methods: {
     goToToDos() {

@@ -1,25 +1,27 @@
 <template>
   <div class="toGet">
-    <p> {{ toGet.title }} </p>
-    <font-awesome-icon 
-      class="delete primary-orange" 
-      :icon="['far', 'check-square']"
-      @click="deleteToGet(toGet.id)">
-    </font-awesome-icon>
+    <list-item
+      :listItem='toGet'
+      :whenRemoved='deleteToGet'>
+    </list-item>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 
+import listItem from '@/components/listItem'
+
 export default {
   name: 'toGet',
   props: {
     toGet: {},
   },
+  components: {
+    listItem,
+  },
   methods: {
     ...mapActions(['deleteToGet']),
-    
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="to-gets-wrapper">
-    <h2>To Gets</h2>
+    <h2 class="accent">To Gets</h2>
     <ul class="to-gets">
       <li v-for="toGet in toGets" :key="toGet.id">
         <to-get :toGet='toGet'></to-get>
@@ -15,7 +15,7 @@
         @focus="inputFocused = true"
         @blur="setInputFocused(false)">
       <button 
-        :id='`to-get-add-to-get-btn`'
+        :id='`shopping-add-to-get-btn`'
         class="floating-bottom-right floating-btn primary-green-bg" 
         v-show='inputFocused'>
         Add To Get

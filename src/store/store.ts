@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import { Todo } from '@/types/todo'
+import { ShoppingItem } from '@/types/shoppingItem'
 
 Vue.use(Vuex)
 import firebase from 'firebase/app'
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     family: [],
     michaelsTodos: [],
     alexandrasTodos: [],
+    shoppingList: [],
     signedIn: false,
     user: {},
   },
@@ -23,6 +25,9 @@ export default new Vuex.Store({
       else {
         state.michaelsTodos = payload.todos;
       }
+    },
+    setShoppingList(state, shoppingList) {
+      state.shoppingList = shoppingList;
     },
     setSignedIn(state, signedIn) { state.signedIn = signedIn; },
   },
@@ -88,6 +93,32 @@ export default new Vuex.Store({
     },
     async deleteToGet({}, toGetID) {
       const res = await firebase.firestore().doc(`toGets/${toGetID}`)
+        .delete();
+      return res;
+    },
+    async watchShoppingList ({state, commit}) {
+      await firebase.firestore().collection(`shoppingList`)
+        .onSnapshot(snapshot => {
+          let shoppingList: Array<ShoppingItem> = [];
+          snapshot.forEach(doc => {
+            shoppingList.push(doc.data() as ShoppingItem);
+          })
+          commit('setShoppingList', shoppingList);
+        });
+    },
+    async addShoppingItem({ }, payload) {
+      if(!payload.title) {
+        throw new Error('Shopping Item title cannot be empty')
+      }
+      const res = await firebase.firestore().collection('shoppingList')
+        .add({ 
+          title: payload.title,
+        });
+      await firebase.firestore().doc(res.path).update({ id: res.id });
+      return res;
+    },
+    async deleteShoppingItem({}, shoppingItemID) {
+      const res = await firebase.firestore().doc(`shoppingList/${shoppingItemID}`)
         .delete();
       return res;
     },
