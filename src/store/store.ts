@@ -32,8 +32,11 @@ export default new Vuex.Store({
     setSignedIn(state, signedIn) { state.signedIn = signedIn; },
   },
   actions: {
-    async watchTodos ({state, commit}, who) {
-      await firebase.firestore().collection(`todos`)
+    watchTodos ({state, commit}, who) {
+      const sortedTodosFromLocalStorage = localStorage.getItem(`worker-${ who }`);
+      commit('setTodos', {workerID: who, todos: sortedTodosFromLocalStorage});
+
+      return firebase.firestore().collection(`todos`)
         .where('workerID', '==', who)
         .onSnapshot(snapshot => {
           let todos: Array<Todo> = [];
@@ -47,6 +50,7 @@ export default new Vuex.Store({
             return Number(a.dueDate.replace(/-/g, '')) - Number(b.dueDate.replace(/-/g, ''))
           })
           commit('setTodos', {workerID: who, todos: sortedTodos});
+          localStorage.setItem(`worker-${who}`, JSON.stringify({ workerID: who, todos: sortedTodos }));
         });
     },
     async getTodo({}, id) {
