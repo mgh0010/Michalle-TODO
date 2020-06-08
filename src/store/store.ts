@@ -33,7 +33,8 @@ export default new Vuex.Store({
   },
   actions: {
     watchTodos ({state, commit}, who) {
-      const sortedTodosFromLocalStorage = localStorage.getItem(`worker-${ who }`);
+      const stringifiedSortedTodos: string = localStorage.getItem(`worker-${ who }-todos`) as string
+      const sortedTodosFromLocalStorage = JSON.parse(stringifiedSortedTodos);
       commit('setTodos', {workerID: who, todos: sortedTodosFromLocalStorage});
 
       return firebase.firestore().collection(`todos`)
@@ -50,7 +51,7 @@ export default new Vuex.Store({
             return Number(a.dueDate.replace(/-/g, '')) - Number(b.dueDate.replace(/-/g, ''))
           })
           commit('setTodos', {workerID: who, todos: sortedTodos});
-          localStorage.setItem(`worker-${who}`, JSON.stringify({ workerID: who, todos: sortedTodos }));
+          localStorage.setItem(`worker-${who}-todos`, JSON.stringify(sortedTodos));
         });
     },
     async getTodo({}, id) {
